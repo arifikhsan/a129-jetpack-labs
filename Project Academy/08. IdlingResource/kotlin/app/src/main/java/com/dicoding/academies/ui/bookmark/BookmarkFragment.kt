@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.academies.R
 import com.dicoding.academies.data.source.local.entity.CourseEntity
 import com.dicoding.academies.databinding.FragmentBookmarkBinding
 import com.dicoding.academies.viewmodel.ViewModelFactory
-import kotlinx.android.synthetic.main.fragment_bookmark.*
 
 /**
  * A simple [Fragment] subclass.
