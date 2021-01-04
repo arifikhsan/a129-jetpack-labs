@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.dicoding.academies.data.AcademyRepository
-import com.dicoding.academies.data.source.local.entity.CourseEntity
 import com.dicoding.academies.data.source.local.entity.CourseWithModule
-import com.dicoding.academies.data.source.local.entity.ModuleEntity
 import com.dicoding.academies.vo.Resource
 
 class DetailCourseViewModel(private val academyRepository: AcademyRepository) : ViewModel() {
