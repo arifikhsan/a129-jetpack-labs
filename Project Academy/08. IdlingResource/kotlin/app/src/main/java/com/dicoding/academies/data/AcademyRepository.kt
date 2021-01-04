@@ -1,14 +1,12 @@
 package com.dicoding.academies.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.dicoding.academies.data.source.local.LocalDataSource
 import com.dicoding.academies.data.source.local.entity.CourseEntity
 import com.dicoding.academies.data.source.local.entity.CourseWithModule
 import com.dicoding.academies.data.source.local.entity.ModuleEntity
 import com.dicoding.academies.data.source.remote.ApiResponse
 import com.dicoding.academies.data.source.remote.RemoteDataSource
-import com.dicoding.academies.data.source.remote.RemoteDataSource.LoadCoursesCallback
 import com.dicoding.academies.data.source.remote.response.ContentResponse
 import com.dicoding.academies.data.source.remote.response.CourseResponse
 import com.dicoding.academies.data.source.remote.response.ModuleResponse
@@ -39,9 +37,9 @@ class AcademyRepository private constructor(private val remoteDataSource: Remote
             public override fun createCall(): LiveData<ApiResponse<List<CourseResponse>>> =
                     remoteDataSource.getAllCourses()
 
-            public override fun saveCallResult(courseResponses: List<CourseResponse>) {
+            public override fun saveCallResult(data: List<CourseResponse>) {
                 val courseList = ArrayList<CourseEntity>()
-                for (response in courseResponses) {
+                for (response in data) {
                     val course = CourseEntity(response.id,
                             response.title,
                             response.description,

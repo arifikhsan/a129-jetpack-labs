@@ -29,7 +29,7 @@ class AcademyViewModelTest {
     private lateinit var academyRepository: AcademyRepository
 
     @Mock
-    private lateinit var observer: Observer<List<CourseEntity>>
+    private lateinit var observer: Observer<Resource<List<CourseEntity>>>
 
     @Before
     fun setUp() {
@@ -43,8 +43,8 @@ class AcademyViewModelTest {
         courses.value = dummyCourses
 
         `when`(academyRepository.getAllCourses()).thenReturn(courses)
-        val courseEntities = viewModel.getCourses().value
-        verify<AcademyRepository>(academyRepository).getAllCourses()
+        val courseEntities = viewModel.getCourses().value?.data
+        verify(academyRepository).getAllCourses()
         assertNotNull(courseEntities)
         assertEquals(5, courseEntities?.size)
 
