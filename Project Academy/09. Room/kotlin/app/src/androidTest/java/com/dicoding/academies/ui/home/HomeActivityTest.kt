@@ -75,6 +75,6 @@ class HomeActivityTest {
         onView(withId(R.id.action_bookmark)).perform(click())
         onView(isRoot()).perform(pressBack())
         onView(withText("Bookmark")).perform(click())
-        onView(withId(R.id.rv_bookmark)).check(matches(hasChildCount(0)))
+        onView(withId(R.id.rv_bookmark)).check(matches(hasChildCount(1)))
     }
 }
