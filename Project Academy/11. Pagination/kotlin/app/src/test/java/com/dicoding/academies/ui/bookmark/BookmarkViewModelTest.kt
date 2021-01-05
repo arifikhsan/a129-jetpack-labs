@@ -3,9 +3,9 @@ package com.dicoding.academies.ui.bookmark
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import com.dicoding.academies.data.AcademyRepository
 import com.dicoding.academies.data.source.local.entity.CourseEntity
-import com.dicoding.academies.utils.DataDummy
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -28,7 +28,10 @@ class BookmarkViewModelTest {
     private lateinit var academyRepository: AcademyRepository
 
     @Mock
-    private lateinit var observer : Observer<List<CourseEntity>>
+    private lateinit var observer: Observer<PagedList<CourseEntity>>
+
+    @Mock
+    private lateinit var pagedList: PagedList<CourseEntity>
 
     @Before
     fun setUp() {
@@ -37,13 +40,14 @@ class BookmarkViewModelTest {
 
     @Test
     fun getBookmark() {
-        val dummyCourses = DataDummy.generateDummyCourses()
-        val courses = MutableLiveData<List<CourseEntity>>()
+        val dummyCourses = pagedList
+        `when`(dummyCourses.size).thenReturn(5)
+        val courses = MutableLiveData<PagedList<CourseEntity>>()
         courses.value = dummyCourses
 
         `when`(academyRepository.getBookmarkedCourses()).thenReturn(courses)
         val courseEntities = viewModel.getBookmarks().value
-        verify<AcademyRepository>(academyRepository).getBookmarkedCourses()
+        verify(academyRepository).getBookmarkedCourses()
         assertNotNull(courseEntities)
         assertEquals(5, courseEntities?.size)
 
